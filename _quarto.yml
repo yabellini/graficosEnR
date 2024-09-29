@@ -5,7 +5,6 @@ format:
   html:
     theme:
       - lumen
-      - assets/styles.scss
     highlight-style: github
     toc: true
     toc-depth: 3

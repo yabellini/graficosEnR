@@ -116,23 +116,25 @@ Además del gráfico de puntos, indicado en el código anterior por `geom_point(
 #| output: false
 #| define:
 #|   - do_respuesta
+
 do_respuesta <- function(respuesta) {
-  if(respuesta == "geom_line() y geom_bar()") {
-    return("Buen trabajo!, geom_line() es para gráficos de líneas y geom_bar() es para gráficos de barras.")
+  if (respuesta == "geom_line() y geom_bar()") {
+    return("<div class='callout note'><strong>Buen trabajo!</strong> `geom_line()` es para gráficos de líneas y `geom_bar()` es para gráficos de barras.</div>")
   } else {
-    return("Vuelve a intentar, En general a la palabra geom_ se le agrega el nombre de la geometría en Inglés")
+    return("<div class='callout warning'><em>Vuelve a intentar</em>. En general a la palabra `geom_` se le agrega el nombre de la geometría en Inglés.</div>")
   }
 }
+
 ```
 
 ```{ojs}
 //| echo: false
 viewof respuesta = Inputs.radio(
   [ "geom_line() y geom_bar()", "geom_linea(), geom_sup()", "geom_area(), geom_histogram()", "geom_line(), geom_area()", "Ninguna de las anteriores"],
-  {value: "Ninguna de las anteriores", label: "Marca tu respuesta" }
+  { value: "Ninguna de las anteriores", label: "Marca tu respuesta", class: "vertical-radio" }
 );
 
-do_respuesta(respuesta);
+html`${await do_respuesta(respuesta)}`
 ```
 
 ### Hagamos un gráfico de lineas
