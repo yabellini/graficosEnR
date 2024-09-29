@@ -142,7 +142,7 @@ Vamos a realizar otros gráficos utilizando los datos en `gapminder`.  Para gene
 Ya hemos filtrado los datos necesarios en el dataset `Argentina` y está disponible en el entorno para que lo puedas utilizar. A continuación te mostramos los primeros registros de este dataset. 
 
 ```{webr}
-#| include: false
+#| edit: false
 head(Argentina)
 ```
 
@@ -202,4 +202,101 @@ Vamos a transformar el gráfico anterior a barras.  ¿Cómo realizarias este cam
 Modifica el siguiente código para generar un gráfico de barras que nos muestre los años en el eje x y la población en el eje y.
 
 
+```{webr} 
+#| exercise: grafico_barras
+
+ggplot(data = Argentina, 
+       mapping = aes(x = year, y = pop)) +
+    geom_______()
+
+```
+
+::: { .hint exercise="grafico_barras"}
+::: { .callout-note collapse="false"}
+## Hint 1
+
+La variable pop ya contiene la cantidad de la población calculada.
+
+:::
+:::
+
+::: { .solution exercise="grafico_barras" }
+::: { .callout-tip collapse="true"}
+## Solucion:
+
+```r
+
+ggplot(data = Argentina,                      #<1>
+       mapping = aes(x = year, y = pop)) +.   #<2>
+    geom_col()                                #<3>
+    
+
+
+```
+1. Pasa el conjunto de datos `Argentina` a la capa de datos (data).
+2. Mapea las variables `year` a al eje x y `pop` al eje y.
+3. Utilizamos `geom_col()` porque ya contamos con una variable que tiene calculada la cantidad que queremos representar 
+
+:::
+:::
+
+
+### Hagamos un gráfico de área
+
+Vamos a transformar el gráfico anterior a áreas.
+
+Modifica el siguiente código para generar un gráfico de áreas que nos muestre los años en el eje x y la población en el eje y.
+
+```{webr} 
+#| exercise: grafico_areas
+
+ggplot(data = Argentina, 
+       mapping = aes(x = year, y = pop)) +
+    geom_______()
+
+
+```
+
+::: { .hint exercise="grafico_areas"}
+::: { .callout-note collapse="false"}
+## Hint 1
+
+Recuerda que el nombre de la geometría es la palabra en inglés, en linea es geom_line(), en barras es geom_bar(), para área es geom_ ...
+
+:::
+:::
+
+::: { .solution exercise="grafico_areas" }
+::: { .callout-tip collapse="true"}
+## Solucion:
+
+```r
+ggplot(data = Argentina, 
+       mapping = aes(x = year, y = pop)) +
+    geom_area()                               #<1>
+
+```
+
+1. Utilizamos `geom_area()` para generar el gráfico de áreas.
+
+:::
+:::
+
+
+## Fuentes
+
+Esperamos que esta pequeña introducción a los gráficos en R te sea de utilidad.  A continuación te dejamos una serie de materiales que pueden resultar muy útiles para continuar aprendiendo y en los cuales basamos este tutorial.
+
+-  [Guía rápida en Español de ggplot2](https://github.com/rstudio/cheatsheets/raw/master/translations/spanish/ggplot2.pdf)
+
+- [RStudio primers en visualización de datos (en Inglés)](https://rstudio.cloud/learn/primers)
+
+- [Capítulo de Visualización de A ModernDive into R and the tidyverse. Chester Ismay and Albert Y. Kim, Foreword by Kelly S. McConville. November 25, 2019 (en Inglés)](https://moderndive.com/2-viz.html)
+
+- [The R Graph Gallery](https://www.r-graph-gallery.com/)
+
+
+## Licencia
+
+Este curso se comparte bajo la licencia [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/deed.es_ES) y fue realizado por [Yanina Bellini Saibene](https://yabellini.netlify.app/)
 
