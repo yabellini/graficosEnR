@@ -1,6 +1,6 @@
 project:
   title: "Graficos en R"
-  output-dir: reports
+  output-dir: docs
 format:
   html:
     theme:
