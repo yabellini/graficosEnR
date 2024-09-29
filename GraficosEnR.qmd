@@ -51,7 +51,7 @@ Para ver los datos de `gapminder`, escribe `gapminder` en el bloque de código q
 
 Usaremos fragmentos de código interactivos como este en el tutorial. Siempre que encuentres uno, puedes hacer clic en _Run Code_ para ejecutar el código escrito. 
 
-Si hay un botón _Pista_ o _Solución_, puedes hacer clic para recibir ayuda y/o ver la respuesta.
+Si hay un botón _Hint_ o _Solution_, puedes hacer clic para recibir ayuda y/o ver la respuesta.
 
 ## A graficar
 
