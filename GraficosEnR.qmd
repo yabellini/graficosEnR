@@ -1,0 +1,205 @@
+---
+title: "Gráficos con R"
+format: live-html
+
+webr:
+  packages:
+  - ggplot2
+  - gapminder
+  - dplyr
+engine: knitr
+---
+
+{{< include ./_extensions/r-wasm/live/_knitr.qmd >}}
+
+```{webr}
+#| include: false
+Argentina <- gapminder %>%
+  filter(country == 'Argentina')
+```
+
+## Introducción
+
+Vamos a utilizar el paquete `ggplot2` que implementa la _gramática de los gráficos_ desarrollada por Leland Wilkinson.  Esta gramática define un _conjunto de reglas_ para construir _gráficos estadísticos combinando_ diferentes tipos de _capas_.
+
+La gramática nos dice que:
+
+> Un gráfico es un *mapeo* de variables de *datos* a atributos *estéticos* de objetos *geométricos*. 
+
+Específicamente, podemos *dividir un gráfico* en los siguientes *tres componentes esenciales*:
+
+1. *Datos (_data_*, en inglés): el conjunto de datos compuesto por variables que mapeamos.
+
+2. *Geometría (_geom_*, por _geometry_ en inglés): el objeto geométrico en cuestión. Se refiere al tipo de objeto que compone el gráfico, por ejemplo: puntos, líneas y barras.
+
+3. *Estética (aes*, por _aesthetic_ en inglés): atributos estéticos del objeto geométrico. Por ejemplo, posición x,  y, color, forma y tamaño. Cada atributo estético se puede asignar a una variable en nuestro conjunto de datos.
+
+### Ejemplo de la gramática en un gráfico
+
+Vamos a ver un ejemplo de estos componentes en un gráfico, para ello vamos a utilizar el paquete `gapminder` que ya instalamos y cargamos por ti.
+
+Para ver los datos de `gapminder`, escribe `gapminder` en el bloque de código que aparece abajo y luego haz click en el botón _"Run Code"_.
+
+
+```{webr}
+#| min-lines: 2
+
+
+```
+
+### Buen trabajo!
+
+Usaremos fragmentos de código interactivos como este en el tutorial. Siempre que encuentres uno, puedes hacer clic en _Run Code_ para ejecutar el código escrito. 
+
+Si hay un botón _Pista_ o _Solución_, puedes hacer clic para recibir ayuda y/o ver la respuesta.
+
+## A graficar
+
+### Veamos un gráfico a través de la gramática de los gráficos.
+
+El siguiente gráfico está realizado con los datos de `gapminder`, intentemos reconocer que variables y secciones corresponden a la gramática de gráficos:
+
+```{webr}
+#| edit: false
+#| runbutton: false
+#| min-lines: 2
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, y = lifeExp, 
+                     color = continent, 
+                     size = pop)) +
+    geom_point()
+
+```
+
+
+Mirando el código y el gráfico, podemos indentificar que:
+
+* Datos: el *nombre del conjunto de datos* (gapminder) se asigna al atributo `data`
+* Estética: el eje `x` representa la variable `gdpPercap`, el eje `y` representa la variable `lifeExp`, el `color` (o `colour`) representa la variable `continent` y el tamaño (`size`) representa la variable población.
+* Geometría: generamos un gráfico de puntos, como indica la función `geom_point()`
+
+
+### Cambiemos algunas propiedades
+
+Supongamos que queremos cambiar los ejes del gráfico, ¿cómo cambiarías el código anterior para lograr ese cambio?
+
+```{webr}
+#| exercise: grafico_puntos
+
+ggplot(data = gapminder, 
+       mapping = aes(x = gdpPercap, y = lifeExp, 
+                     color = continent, 
+                     size = pop))+
+    geom_point()
+
+```
+
+::: { .hint exercise="grafico_puntos"}
+::: { .callout-note collapse="false"}
+## Hint 1
+
+Recuerda que los ejes están representados por las letras x (horizontal) e y (vertical)
+
+:::
+:::
+
+### Bien hecho!
+
+Además del gráfico de puntos, indicado en el código anterior por `geom_point()`, tenemos otros tipos de gráficos, por ejemplo gráficos de líneas, de barras, de áreas o histogramas.  
+
+
+¿Cómo te parece que pueden llamarse las geometrías para los gráficos de lineas y de áreas?
+
+
+```{webr}
+#| edit: false
+#| output: false
+#| define:
+#|   - do_respuesta
+do_respuesta <- function(respuesta) {
+  if(respuesta == "geom_line() y geom_bar()") {
+    return("Buen trabajo!, geom_line() es para gráficos de líneas y geom_bar() es para gráficos de barras.")
+  } else {
+    return("Vuelve a intentar, En general a la palabra geom_ se le agrega el nombre de la geometría en Inglés")
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+viewof respuesta = Inputs.radio(
+  [ "geom_line() y geom_bar()", "geom_linea(), geom_sup()", "geom_area(), geom_histogram()", "geom_line(), geom_area()", "Ninguna de las anteriores"],
+  {value: "Ninguna de las anteriores", label: "Marca tu respuesta" }
+);
+
+do_respuesta(respuesta);
+```
+
+### Hagamos un gráfico de lineas
+
+Vamos a realizar otros gráficos utilizando los datos en `gapminder`.  Para generar el gráfico de lineas, vamos a ver la evolución de la población de Argentina en la serie de datos disponible.
+
+Ya hemos filtrado los datos necesarios en el dataset `Argentina` y está disponible en el entorno para que lo puedas utilizar. A continuación te mostramos los primeros registros de este dataset. 
+
+```{webr}
+#| include: false
+head(Argentina)
+```
+
+
+Modifica el siguiente código para generar un gráfico que lineas que nos muestre los años en el eje x y la población en el eje y.
+
+
+```{webr}
+#| exercise: grafico_lineas
+
+ggplot(data = ________, 
+       mapping = aes(x = _______, y = ________)) +
+    geom_line()
+
+
+```
+
+::: { .hint exercise="grafico_lineas"}
+::: { .callout-note collapse="false"}
+## Hint 1
+
+- El dataset se llama Argentina
+- La variable que contiene los años se llama year
+- La variable que contiene la población se llama pop
+
+:::
+:::
+
+::: { .solution exercise="grafico_lineas" }
+::: { .callout-tip collapse="true"}
+## Solucion:
+
+
+```r
+ggplot(data = Argentina,                    #<1>
+       mapping = aes(x = year, y = pop)) +  #<2>
+    geom_line()
+
+```
+1. Pasa el conjunto de datos `Argentina` a la capa de datos (data).
+2. Mapea las variables `year` a al eje x y `pop` al eje y.
+
+:::
+:::
+
+### Hagamos un gráfico de barras
+
+Hay dos formas de hacer un gráfico de barras en `ggplot2`, una forma es utilizando `geom_bar()` y otra es utilizando `geom_col()`.
+
+
+* `geom_bar()` : utilizamos esta geometría cuando *no tenemos* una variable que contenga el cálculo de la cantidad o frecuencia de la variable categórica que queremos gráficar. Solo asignameros la variable categorica al eje x y ggplot realizará cálculo del valor del eje y por nosotros.
+
+* `geom_col()` : utilizamos esta geometría cuando *tenemos* en nuestro set de datos una variable con el cálculo de la cantidad o frecuencia de la variable categórica que queremos graficar. Vamos a usar la estética *del eje y* y le asignaremos *la variable que tiene esa cantidad*.
+
+Vamos a transformar el gráfico anterior a barras.  ¿Cómo realizarias este cambio?, ¿cuál de las dos opciones de geometrías utilizarías?
+
+Modifica el siguiente código para generar un gráfico de barras que nos muestre los años en el eje x y la población en el eje y.
+
+
+

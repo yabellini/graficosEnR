@@ -1,0 +1,19 @@
+project:
+  title: "Graficos en R"
+  output-dir: reports
+format:
+  html:
+    theme:
+      - lumen
+      - assets/styles.scss
+    highlight-style: github
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    self-contained: true
+    code-tools: true
+    grid:
+      sidebar-width: 300px
+      body-width: 1000px
+      margin-width: 300px
+      gutter-width: 1.5rem
