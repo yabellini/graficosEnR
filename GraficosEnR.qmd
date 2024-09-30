@@ -119,9 +119,9 @@ Además del gráfico de puntos, indicado en el código anterior por `geom_point(
 
 do_respuesta <- function(respuesta) {
   if (respuesta == "geom_line() y geom_bar()") {
-    return("<div class='callout note'><strong>Buen trabajo!</strong> `geom_line()` es para gráficos de líneas y `geom_bar()` es para gráficos de barras.</div>")
+    return("<strong>Buen trabajo!</strong> `geom_line()` es para gráficos de líneas y `geom_bar()` es para gráficos de barras.")
   } else {
-    return("<div class='callout warning'><em>Vuelve a intentar</em>. En general a la palabra `geom_` se le agrega el nombre de la geometría en Inglés.</div>")
+    return("<em>Vuelve a intentar</em>. En general a la palabra `geom_` se le agrega el nombre de la geometría en Inglés.")
   }
 }
 
